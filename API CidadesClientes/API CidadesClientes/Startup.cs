@@ -1,7 +1,9 @@
+using API_CidadesClientes.Contextos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,7 +28,14 @@ namespace API_CidadesClientes
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-
+			services.AddDbContext<ClienteDbContext>(Ops => Ops.UseSqlServer("Data Source=PCGRANDE\\SQLEXPRESS;" +
+				"database=ClientesDb;" +
+				"Integrated Security=True;" +
+				"Connect Timeout=5;" +
+				"Encrypt=False;" +
+				"TrustServerCertificate=False;" +
+				"ApplicationIntent=ReadWrite;" +
+				"MultiSubnetFailover=False"));
 			services.AddControllers();
 			services.AddSwaggerGen(c =>
 			{
@@ -35,8 +44,9 @@ namespace API_CidadesClientes
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ClienteDbContext DBC)
 		{
+			DBC.Database.Migrate();
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();

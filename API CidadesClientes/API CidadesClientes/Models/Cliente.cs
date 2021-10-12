@@ -9,5 +9,10 @@ namespace API_CidadesClientes.Models
 	{
 		public Guid Id { get; set; }
 		public string Nome { get; set; }
+		public DateTime? DataDeNascimento { get; set; }
+		public Cidade cidade { get; set; }
+		public string CEP { get; set; }
+		public string Logradouro { get; set; }
+		public string Bairro { get; set; }
 	}
 }
