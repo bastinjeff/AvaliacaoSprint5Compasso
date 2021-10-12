@@ -1,0 +1,33 @@
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\bin\Debug\net5.0\appsettings.Development.json
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\bin\Debug\net5.0\appsettings.json
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\bin\Debug\net5.0\API CidadesClientes.exe
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\bin\Debug\net5.0\API CidadesClientes.deps.json
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\bin\Debug\net5.0\API CidadesClientes.runtimeconfig.json
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\bin\Debug\net5.0\API CidadesClientes.runtimeconfig.dev.json
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\bin\Debug\net5.0\API CidadesClientes.dll
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\bin\Debug\net5.0\ref\API CidadesClientes.dll
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\bin\Debug\net5.0\API CidadesClientes.pdb
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\bin\Debug\net5.0\Microsoft.OpenApi.dll
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\obj\Debug\net5.0\API CidadesClientes.csprojAssemblyReference.cache
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\obj\Debug\net5.0\API CidadesClientes.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\obj\Debug\net5.0\API CidadesClientes.AssemblyInfoInputs.cache
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\obj\Debug\net5.0\API CidadesClientes.AssemblyInfo.cs
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\obj\Debug\net5.0\API CidadesClientes.csproj.CoreCompileInputs.cache
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\obj\Debug\net5.0\API CidadesClientes.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\obj\Debug\net5.0\API CidadesClientes.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\obj\Debug\net5.0\staticwebassets\API CidadesClientes.StaticWebAssets.Manifest.cache
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\obj\Debug\net5.0\staticwebassets\API CidadesClientes.StaticWebAssets.xml
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\obj\Debug\net5.0\scopedcss\bundle\API CidadesClientes.styles.css
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\obj\Debug\net5.0\API CidadesClientes.RazorTargetAssemblyInfo.cache
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\obj\Debug\net5.0\API CidadesClientes.csproj.CopyComplete
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\obj\Debug\net5.0\API CidadesClientes.dll
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\obj\Debug\net5.0\ref\API CidadesClientes.dll
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\obj\Debug\net5.0\API CidadesClientes.pdb
+C:\Users\jrfri\Documents\GitHub\AvaliacaoSprint5Compasso\API CidadesClientes\API CidadesClientes\obj\Debug\net5.0\API CidadesClientes.genruntimeconfig.cache
