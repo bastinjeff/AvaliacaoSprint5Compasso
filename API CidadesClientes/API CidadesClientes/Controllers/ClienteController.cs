@@ -18,20 +18,16 @@ namespace API_CidadesClientes.Controllers
 {
 	[ApiController]
 	[Route("api/[controller]")]
-	public class ClienteController : ControllerBase
+	public class ClienteController : MainController
 	{
-		private ClienteDbContext Contexto;
-		private IMapper mapper;
-		public ClienteController(ClienteDbContext Contexto, IMapper mapper)
+		public ClienteController(ClienteDbContext Contexto, IMapper mapper) : base(Contexto,mapper)
 		{
-			this.Contexto = Contexto;
-			this.mapper = mapper;
 		}
+
 		[HttpPost]
 		public IActionResult RerecebeClienteJSON(RecebeClienteDTO ClienteNovoDTO)
 		{
-			var Resultado = OperacoesViaCEP.BuscaEnderecoViaCep(ClienteNovoDTO.CEP);
-			var ViaCepData = JsonConvert.DeserializeObject<RecebeCidadeViaCepDTO>(Resultado);
+			var ViaCepData = OperacoesViaCEP.RetornaObjetoViaCep(ClienteNovoDTO.CEP);
 			Cliente ClienteNovo = mapper.Map<Cliente>(ClienteNovoDTO);
 			OperarClienteNovo(ClienteNovo, ViaCepData);
 			return CreatedAtAction(nameof(RetornaClientePorId), new { Id = ClienteNovo.Id }, ClienteNovoDTO);
@@ -39,12 +35,17 @@ namespace API_CidadesClientes.Controllers
 
 		private void OperarClienteNovo(Cliente ClienteNovo, RecebeCidadeViaCepDTO ViaCepData)
 		{
-			ClienteNovo.Bairro = ViaCepData.bairro;
-			ClienteNovo.Logradouro = ViaCepData.logradouro;
-			var CidadeRetornada = RetornaCidadeNovaOuEncontrada(ViaCepData);
-			ClienteNovo.cidade = CidadeRetornada;
+			OperarInfoCidade(ClienteNovo, ViaCepData);
 			Contexto.Clientes.Add(ClienteNovo);
 			Contexto.SaveChanges();
+		}
+
+		private void OperarInfoCidade(Cliente ClienteAtual, RecebeCidadeViaCepDTO ViaCepData)
+		{
+			ClienteAtual.Bairro = ViaCepData.bairro;
+			ClienteAtual.Logradouro = ViaCepData.logradouro;
+			var CidadeRetornada = RetornaCidadeNovaOuEncontrada(ViaCepData);
+			ClienteAtual.cidade = CidadeRetornada;
 		}
 
 		private Cidade RetornaCidadeNovaOuEncontrada(RecebeCidadeViaCepDTO ViaCepData)
@@ -74,32 +75,48 @@ namespace API_CidadesClientes.Controllers
 			Cliente ClienteDoDB = Contexto.Clientes.Include(X => X.cidade).FirstOrDefault(Cl => Cl.Id == Id);			
 			
 			if (ClienteDoDB != null)
-			{
-				//Guid ClienteCidadeId = (Guid)Contexto.Entry(ClienteDoDB).Property("CidadeId").CurrentValue;
-				//ClienteDoDB.cidade = Contexto.Cidades.FirstOrDefault(Ci => ClienteCidadeId == Ci.Id);				
+			{							
 				RetornaClienteDTO ClienteRetornado = mapper.Map<RetornaClienteDTO>(ClienteDoDB);
 				return Ok(ClienteRetornado);
 			}
 			else return NotFound();
 		}
 
-		private void EncontraCidadeIdCliente()
-		{
-
-		}
-
 		[HttpDelete("{id}")]
-		public void DeletaClientePorId(int Id)
+		public IActionResult DeletaClientePorId(Guid Id)
 		{
+			Cliente ClienteDoDB = Contexto.Clientes.FirstOrDefault(Cl => Cl.Id == Id);
+			if(ClienteDoDB == null)
+			{
+				return NotFound();
+			}
+			Contexto.Remove(ClienteDoDB);
+			Contexto.SaveChanges();
+			return NoContent();
+		}
+
+		[HttpPut("{id}")]
+		public IActionResult EditaClientePorId(Guid Id, [FromBody] EditaClienteDTO ClienteDTO)
+		{
+			Cliente ClienteDoDB = Contexto.Clientes.FirstOrDefault(Cl => Cl.Id == Id);
+			string CepOriginal = ClienteDoDB.CEP;
+			if(ClienteDoDB == null)
+			{
+				return NotFound();
+			}
+			RecebeCidadeViaCepDTO ViaCepData = new RecebeCidadeViaCepDTO();
+
+			mapper.Map(ClienteDTO, ClienteDoDB);
+			if (CepOriginal != ClienteDoDB.CEP)
+			{
+				ViaCepData = OperacoesViaCEP.RetornaObjetoViaCep(ClienteDTO.CEP);
+				OperarInfoCidade(ClienteDoDB, ViaCepData);
+			}			
+			Contexto.SaveChanges();
+			return NoContent();
 
 		}
 
-		[HttpPut("id")]
-		public void EditaClientePorId(int Id, [FromBody] EditaClienteDTO ClienteDTO)
-		{
 
-		}
-
-		
 	}
 }

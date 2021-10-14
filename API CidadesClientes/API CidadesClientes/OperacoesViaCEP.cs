@@ -1,4 +1,6 @@
-﻿using System;
+﻿using API_CidadesClientes.Models.DTOs;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,7 +11,13 @@ namespace API_CidadesClientes
 {
 	public static class OperacoesViaCEP
 	{
-		public static string BuscaEnderecoViaCep(string CEP)
+		public static RecebeCidadeViaCepDTO RetornaObjetoViaCep(string CEP)
+		{
+			var Resultado = BuscaEnderecoViaCep(CEP);
+			var ViaCepData = JsonConvert.DeserializeObject<RecebeCidadeViaCepDTO>(Resultado);
+			return ViaCepData;
+		}
+		private static string BuscaEnderecoViaCep(string CEP)
 		{
 			var ViaCepURL = $"http://www.viacep.com.br/ws/{CEP}/json/";
 			var Requisicao = WebRequest.Create(ViaCepURL);

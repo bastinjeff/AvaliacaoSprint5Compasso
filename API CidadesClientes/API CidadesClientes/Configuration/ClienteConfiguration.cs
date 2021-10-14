@@ -54,7 +54,7 @@ namespace API_CidadesClientes.Configuration
 			builder
 				.Property(C => C.Bairro)
 				.HasColumnName("Bairro")
-				.HasColumnType("varchar(20)");
+				.HasColumnType("varchar(max)");
 			
 		}
 	}

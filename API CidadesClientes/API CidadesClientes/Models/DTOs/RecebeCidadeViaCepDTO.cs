@@ -28,5 +28,6 @@ namespace API_CidadesClientes.Models.DTOs
 		public string gia { get; set; }
 		public string ddd { get; set; }
 		public string siafi { get; set; }
+		public bool erro { get; set; }
 	}
 }

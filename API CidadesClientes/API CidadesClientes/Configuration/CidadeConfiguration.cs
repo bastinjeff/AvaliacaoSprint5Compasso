@@ -30,7 +30,7 @@ namespace API_CidadesClientes.Configuration
 			builder
 				.Property(C => C.Estado)
 				.HasColumnName("Estado")
-				.HasColumnType("varchar(200)")
+				.HasColumnType("varchar(max)")
 				.IsRequired();
 		}
 	}
