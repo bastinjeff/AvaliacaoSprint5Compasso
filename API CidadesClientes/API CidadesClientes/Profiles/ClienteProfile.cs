@@ -14,7 +14,8 @@ namespace API_CidadesClientes.Profiles
 		{
 			CreateMap<RecebeClienteDTO, Cliente>();
 			CreateMap<EditaClienteDTO, Cliente>();
-			CreateMap<Cliente, RetornaClienteDTO>();
+			CreateMap<Cliente, RetornaClienteDTO>();			
+			
 		}
 	}
 }

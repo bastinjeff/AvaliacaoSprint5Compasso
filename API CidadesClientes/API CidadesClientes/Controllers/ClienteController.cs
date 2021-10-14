@@ -11,6 +11,8 @@ using API_CidadesClientes.Contextos;
 using AutoMapper;
 using Newtonsoft.Json;
 using API_CidadesClientes.Models.DTOs;
+using Microsoft.EntityFrameworkCore;
+using API_CidadesClientes.Models.DTOs.CidadeDTOs;
 
 namespace API_CidadesClientes.Controllers
 {
@@ -47,7 +49,7 @@ namespace API_CidadesClientes.Controllers
 
 		private Cidade RetornaCidadeNovaOuEncontrada(RecebeCidadeViaCepDTO ViaCepData)
 		{
-			Cidade CidadeRetorno = Contexto.Cidades.FirstOrDefault(Ci => Ci.Nome == ViaCepData.localidade);
+			Cidade CidadeRetorno = Contexto.Cidades.FirstOrDefault(Ci => Ci.Nome == ViaCepData.localidade && Ci.Estado == ViaCepData.uf);
 			if (CidadeRetorno == null)
 			{
 				Cidade NovaCidade = new Cidade();
@@ -59,20 +61,31 @@ namespace API_CidadesClientes.Controllers
 		}
 
 		[HttpGet]
-		public void RetornaTodosOsClientes()
+		public IActionResult RetornaTodosOsClientes()
 		{
-
+			IEnumerable<Cliente> TodosOsClientes = Contexto.Clientes.Include(X => X.cidade);
+			var TodosOsClientesDTO = mapper.Map<IEnumerable<RetornaClienteDTO>>(TodosOsClientes);
+			return Ok(TodosOsClientesDTO);
 		}
 
 		[HttpGet("{id}")]
 		public IActionResult RetornaClientePorId(Guid Id)
 		{
-			Cliente ClienteRetornado = Contexto.Clientes.FirstOrDefault(Cl => Cl.Id == Id);
-			if (ClienteRetornado != null)
+			Cliente ClienteDoDB = Contexto.Clientes.Include(X => X.cidade).FirstOrDefault(Cl => Cl.Id == Id);			
+			
+			if (ClienteDoDB != null)
 			{
+				//Guid ClienteCidadeId = (Guid)Contexto.Entry(ClienteDoDB).Property("CidadeId").CurrentValue;
+				//ClienteDoDB.cidade = Contexto.Cidades.FirstOrDefault(Ci => ClienteCidadeId == Ci.Id);				
+				RetornaClienteDTO ClienteRetornado = mapper.Map<RetornaClienteDTO>(ClienteDoDB);
 				return Ok(ClienteRetornado);
 			}
 			else return NotFound();
+		}
+
+		private void EncontraCidadeIdCliente()
+		{
+
 		}
 
 		[HttpDelete("{id}")]
