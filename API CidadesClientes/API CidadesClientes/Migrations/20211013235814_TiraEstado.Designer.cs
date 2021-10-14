@@ -4,14 +4,16 @@ using API_CidadesClientes.Contextos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace API_CidadesClientes.Migrations
 {
     [DbContext(typeof(ClienteDbContext))]
-    partial class ClienteDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211013235814_TiraEstado")]
+    partial class TiraEstado
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

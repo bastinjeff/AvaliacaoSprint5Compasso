@@ -28,12 +28,10 @@ namespace API_CidadesClientes.Configuration
 				.IsRequired();
 
 			builder
-				.Property<Guid>("EstadoId").IsRequired();
-
-			builder
-				.HasOne(C => C.estado)
-				.WithMany(E => E.cidades)
-				.HasForeignKey("EstadoId");
+				.Property(C => C.Estado)
+				.HasColumnName("Estado")
+				.HasColumnType("varchar(200)")
+				.IsRequired();
 		}
 	}
 }

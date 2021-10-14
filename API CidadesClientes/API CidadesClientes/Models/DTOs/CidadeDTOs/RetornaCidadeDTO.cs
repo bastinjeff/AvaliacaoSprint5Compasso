@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace API_CidadesClientes.Models
+namespace API_CidadesClientes.Models.DTOs.CidadeDTOs
 {
-	public class Estado
+	public class RetornaCidadeDTO
 	{
-		public Guid Id { get; set; }
 		public string Nome { get; set; }
-		public IList<Cidade> cidades { get; set; }
+		public string Estado { get; set; }
 	}
 }

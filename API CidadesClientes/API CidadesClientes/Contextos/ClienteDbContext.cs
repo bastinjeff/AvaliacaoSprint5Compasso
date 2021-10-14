@@ -12,7 +12,6 @@ namespace API_CidadesClientes.Contextos
 	{
 		public DbSet<Cliente> Clientes { get; set; }
 		public DbSet<Cidade> Cidades { get; set; }
-		public DbSet<Estado> Estados { get; set; }
 
 		public ClienteDbContext(DbContextOptions<ClienteDbContext> options) : base(options)
 		{
@@ -23,7 +22,6 @@ namespace API_CidadesClientes.Contextos
 		{
 			modelBuilder.ApplyConfiguration(new CidadeConfiguration());
 			modelBuilder.ApplyConfiguration(new ClienteConfiguration());
-			modelBuilder.ApplyConfiguration(new EstadoConfiguration());
 		}
 	}
 }
