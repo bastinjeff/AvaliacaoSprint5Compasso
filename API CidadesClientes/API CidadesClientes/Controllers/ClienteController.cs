@@ -26,12 +26,36 @@ namespace API_CidadesClientes.Controllers
 			this.mapper = mapper;
 		}
 		[HttpPost]
-		public void RerecebeClienteJSON(RecebeClienteDTO ClienteNovo)
+		public IActionResult RerecebeClienteJSON(RecebeClienteDTO ClienteNovoDTO)
 		{
-			Console.WriteLine(ClienteNovo.CEP);
-			var Resultado = OperacoesViaCEP.BuscaEnderecoViaCep(ClienteNovo.CEP);
-			var ViaCep = JsonConvert.DeserializeObject<RecebeCidadeViaCepDTO>(Resultado);
-			Console.WriteLine(ViaCep.bairro);
+			var Resultado = OperacoesViaCEP.BuscaEnderecoViaCep(ClienteNovoDTO.CEP);
+			var ViaCepData = JsonConvert.DeserializeObject<RecebeCidadeViaCepDTO>(Resultado);
+			Cliente ClienteNovo = mapper.Map<Cliente>(ClienteNovoDTO);
+			OperarClienteNovo(ClienteNovo, ViaCepData);
+			return CreatedAtAction(nameof(RetornaClientePorId), new { Id = ClienteNovo.Id }, ClienteNovoDTO);
+		}
+
+		private void OperarClienteNovo(Cliente ClienteNovo, RecebeCidadeViaCepDTO ViaCepData)
+		{
+			ClienteNovo.Bairro = ViaCepData.bairro;
+			ClienteNovo.Logradouro = ViaCepData.logradouro;
+			var CidadeRetornada = RetornaCidadeNovaOuEncontrada(ViaCepData);
+			ClienteNovo.cidade = CidadeRetornada;
+			Contexto.Clientes.Add(ClienteNovo);
+			Contexto.SaveChanges();
+		}
+
+		private Cidade RetornaCidadeNovaOuEncontrada(RecebeCidadeViaCepDTO ViaCepData)
+		{
+			Cidade CidadeRetorno = Contexto.Cidades.FirstOrDefault(Ci => Ci.Nome == ViaCepData.localidade);
+			if (CidadeRetorno == null)
+			{
+				Cidade NovaCidade = new Cidade();
+				NovaCidade.Nome = ViaCepData.localidade;
+				NovaCidade.Estado = ViaCepData.uf;
+				return NovaCidade;
+			}
+			return CidadeRetorno;
 		}
 
 		[HttpGet]
@@ -41,9 +65,14 @@ namespace API_CidadesClientes.Controllers
 		}
 
 		[HttpGet("{id}")]
-		public void RetornaClientePorId(int Id, [FromBody] EditaClienteDTO ClienteDTO)
+		public IActionResult RetornaClientePorId(Guid Id)
 		{
-
+			Cliente ClienteRetornado = Contexto.Clientes.FirstOrDefault(Cl => Cl.Id == Id);
+			if (ClienteRetornado != null)
+			{
+				return Ok(ClienteRetornado);
+			}
+			else return NotFound();
 		}
 
 		[HttpDelete("{id}")]
@@ -53,7 +82,7 @@ namespace API_CidadesClientes.Controllers
 		}
 
 		[HttpPut("id")]
-		public void EditaClientePorId(int Id)
+		public void EditaClientePorId(int Id, [FromBody] EditaClienteDTO ClienteDTO)
 		{
 
 		}
