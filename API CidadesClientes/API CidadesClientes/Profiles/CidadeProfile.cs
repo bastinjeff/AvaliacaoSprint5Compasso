@@ -13,6 +13,8 @@ namespace API_CidadesClientes.Profiles
 		public CidadeProfile()
 		{
 			CreateMap<Cidade, RetornaCidadeDTO>();
+			CreateMap<EditaCidadeDTO, Cidade>();
+			CreateMap<RecebeCidadeDTO, Cidade>();
 		}
 	}
 }

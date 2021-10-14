@@ -99,11 +99,11 @@ namespace API_CidadesClientes.Controllers
 		public IActionResult EditaClientePorId(Guid Id, [FromBody] EditaClienteDTO ClienteDTO)
 		{
 			Cliente ClienteDoDB = Contexto.Clientes.FirstOrDefault(Cl => Cl.Id == Id);
-			string CepOriginal = ClienteDoDB.CEP;
 			if(ClienteDoDB == null)
 			{
 				return NotFound();
 			}
+			string CepOriginal = ClienteDoDB.CEP;
 			RecebeCidadeViaCepDTO ViaCepData = new RecebeCidadeViaCepDTO();
 
 			mapper.Map(ClienteDTO, ClienteDoDB);
