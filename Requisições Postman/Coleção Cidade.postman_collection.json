@@ -1,0 +1,125 @@
+{
+	"info": {
+		"_postman_id": "3e0fa961-937c-4ccf-bccb-0766cd6d5453",
+		"name": "Coleção Cidade",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Todas As Cidades",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/api/Cidade",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Cidade"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cidade Por Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/api/Cidade/a8e4032a-9622-4817-889c-08d98f8aa866",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Cidade",
+						"a8e4032a-9622-4817-889c-08d98f8aa866"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insere Cidade",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"nome\": \"Porto Alegre\",\r\n        \"estado\": \"RS\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/api/Cidade",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Cidade"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deleta Cidade",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/api/Cidade/7F1F07DD-BE0B-4C14-CCC8-08D98F20990F",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Cidade",
+						"7F1F07DD-BE0B-4C14-CCC8-08D98F20990F"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edita Cidade",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"nome\": \"São_Paulo\",\r\n        \"estado\": \"SP\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/api/Cidade/2da76e27-de66-4ca9-ccc7-08d98f20990f",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Cidade",
+						"2da76e27-de66-4ca9-ccc7-08d98f20990f"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
