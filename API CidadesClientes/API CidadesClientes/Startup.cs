@@ -28,7 +28,7 @@ namespace API_CidadesClientes
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddDbContext<ClienteDbContext>(Ops => Ops.UseSqlServer("Data Source=PCGRANDE\\SQLEXPRESS;" +
+			services.AddDbContext<ClienteDbContext>(Ops => Ops.UseSqlServer("Data Source=localhost\\SQLEXPRESS;" +
 				"database=ClientesDb;" +
 				"Integrated Security=True;" +
 				"Connect Timeout=5;" +
