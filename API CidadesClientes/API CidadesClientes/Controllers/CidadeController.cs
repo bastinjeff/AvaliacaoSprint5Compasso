@@ -60,7 +60,6 @@ namespace API_CidadesClientes.Controllers
 			{
 				return NotFound();
 			}
-			Console.WriteLine(CidadeDoDb.Id);
 			List<Cliente> ClientesRetornados = Contexto.Clientes.Where(C => EF.Property<Guid>(C, "CidadeId") == CidadeDoDb.Id).ToList();
 			if (ClientesRetornados.Count > 0)
 			{
