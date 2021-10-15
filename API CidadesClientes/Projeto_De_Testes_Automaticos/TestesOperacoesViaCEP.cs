@@ -1,4 +1,5 @@
 using API_CidadesClientes;
+using API_CidadesClientes.Operacoes;
 using System;
 using Xunit;
 

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace API_CidadesClientes
+namespace API_CidadesClientes.Operacoes
 {
 	public static class OperacoesViaCEP
 	{

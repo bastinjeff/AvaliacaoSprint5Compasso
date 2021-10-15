@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 using API_CidadesClientes.Models.DTOs;
 using Microsoft.EntityFrameworkCore;
 using API_CidadesClientes.Models.DTOs.CidadeDTOs;
+using API_CidadesClientes.Operacoes;
 
 namespace API_CidadesClientes.Controllers
 {
@@ -29,36 +30,8 @@ namespace API_CidadesClientes.Controllers
 		{
 			var ViaCepData = OperacoesViaCEP.RetornaObjetoViaCep(ClienteNovoDTO.CEP);
 			Cliente ClienteNovo = mapper.Map<Cliente>(ClienteNovoDTO);
-			OperarClienteNovo(ClienteNovo, ViaCepData);
+			OperacoesCliente.CriarClienteNovo(ClienteNovo, ViaCepData, Contexto);
 			return CreatedAtAction(nameof(RetornaClientePorId), new { Id = ClienteNovo.Id }, ClienteNovoDTO);
-		}
-
-		private void OperarClienteNovo(Cliente ClienteNovo, RecebeCidadeViaCepDTO ViaCepData)
-		{
-			OperarInfoCidade(ClienteNovo, ViaCepData);
-			Contexto.Clientes.Add(ClienteNovo);
-			Contexto.SaveChanges();
-		}
-
-		private void OperarInfoCidade(Cliente ClienteAtual, RecebeCidadeViaCepDTO ViaCepData)
-		{
-			ClienteAtual.Bairro = ViaCepData.bairro;
-			ClienteAtual.Logradouro = ViaCepData.logradouro;
-			var CidadeRetornada = RetornaCidadeNovaOuEncontrada(ViaCepData);
-			ClienteAtual.cidade = CidadeRetornada;
-		}
-
-		private Cidade RetornaCidadeNovaOuEncontrada(RecebeCidadeViaCepDTO ViaCepData)
-		{
-			Cidade CidadeRetorno = Contexto.Cidades.FirstOrDefault(Ci => Ci.Nome == ViaCepData.localidade && Ci.Estado == ViaCepData.uf);
-			if (CidadeRetorno == null)
-			{
-				Cidade NovaCidade = new Cidade();
-				NovaCidade.Nome = ViaCepData.localidade;
-				NovaCidade.Estado = ViaCepData.uf;
-				return NovaCidade;
-			}
-			return CidadeRetorno;
 		}
 
 		[HttpGet]
@@ -110,7 +83,7 @@ namespace API_CidadesClientes.Controllers
 			if (CepOriginal != ClienteDoDB.CEP)
 			{
 				ViaCepData = OperacoesViaCEP.RetornaObjetoViaCep(ClienteDTO.CEP);
-				OperarInfoCidade(ClienteDoDB, ViaCepData);
+				OperacoesCidade.OperarInfoCidade(ClienteDoDB, ViaCepData, Contexto);
 			}			
 			Contexto.SaveChanges();
 			return NoContent();
